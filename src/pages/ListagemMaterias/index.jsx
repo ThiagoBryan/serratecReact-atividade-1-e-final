@@ -7,23 +7,21 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { StyledTableCell, StyledTableRow } from "./styles";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "../../constants";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
+import { API_Lista } from "../../constants";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import animationData from "../../lotties/78259-loading.json";
-import ListagemMaterias from "../ListagemMaterias";
-import CadastroMaterias from "../CadastroMaterias";
 
-const AlunosListagem = () => {
+const ListagemMaterias = () => {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [alunos, setAlunos] = useState([]);
+  const [materias, setMaterias] = useState([]);
 
   const defaultOptions = {
     loop: true,
@@ -35,27 +33,27 @@ const AlunosListagem = () => {
   };
 
   useEffect(() => {
-    getAlunos();
+    getMaterias();
   }, []);
 
-  const getAlunos = () => {
-    axios.get(API_URL).then((response) => {
-      setAlunos(response.data);
+  const getMaterias = () => {
+    axios.get(API_Lista).then((response) => {
+      setMaterias(response.data);
     });
   };
 
-  const deletarAluno = (aluno) => {
+  const deletarMateria = (materia) => {
     axios
-      .delete(API_URL, { data: aluno })
+      .delete(API_Lista, { data: materia })
       .then((response) => {
         MySwal.fire(<p>{response?.data?.message}</p>);
 
-        const alunoIndex = alunos.findIndex(
-          (elemento) => elemento.id === aluno.id
+        const materiaIndex = materias.findIndex(
+          (elemento) => elemento.id === materia.id
         );
-        let newAlunos = [...alunos];
-        newAlunos.splice(alunoIndex, 1);
-        setAlunos(newAlunos);
+        let newMaterias = [...materias];
+        newMaterias.splice(materiaIndex, 1);
+        setMaterias(newMaterias);
       })
       .catch((error) => {
         MySwal.fire({
@@ -66,56 +64,40 @@ const AlunosListagem = () => {
       });
   };
 
-  const editarAluno = (aluno) => {
-    navigate(`/editar-alunos/${aluno.id}`);
+  const editarMateria = (materia) => {
+    navigate(`/editar-materias/${materia.id}`);
   };
-
-  // SE FOSSE USAR A ABSTRAÇÃO (aula 4)
-  // const listaCampos = [
-  //   "nome",
-  //   "idade",
-  //   "cidade"
-  // ];
-
-  // return (
-  //   <Box sx={{ marginTop: "25px" }}>
-  //     <TabelaSerratec listaCampos={listaCampos} listaValores={alunos} />
-  //   </Box>
-  // );
 
   return (
     <Box sx={{ marginTop: "25px" }}>
-      {alunos.length > 0 ? (
+      {materias.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Nome</StyledTableCell>
-                <StyledTableCell>Idade</StyledTableCell>
-                <StyledTableCell>Cidade</StyledTableCell>
+                <StyledTableCell>Titulo</StyledTableCell>
+                <StyledTableCell>Professor</StyledTableCell>
                 <StyledTableCell>Ações</StyledTableCell>
-                {/* <StyledTableCell>Matérias</StyledTableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
-              {alunos.map((aluno) => (
+              {materias.map((materia) => (
                 <StyledTableRow>
-                  <StyledTableCell>{aluno.nome}</StyledTableCell>
-                  <StyledTableCell>{aluno.idade}</StyledTableCell>
-                  <StyledTableCell>{aluno.cidade}</StyledTableCell>
+                  <StyledTableCell>{materia.titulo}</StyledTableCell>
+                  <StyledTableCell>{materia.professor_nome}</StyledTableCell>
                   <StyledTableCell>
-                    <Button onClick={() => editarAluno(aluno)} variant="text">
+                    <Button
+                      onClick={() => editarMateria(materia)}
+                      variant="text"
+                    >
                       <EditIcon />
                     </Button>
-                    <Button onClick={() => deletarAluno(aluno)} variant="text">
+                    <Button
+                      onClick={() => deletarMateria(materia)}
+                      variant="text"
+                    >
                       <DeleteIcon />
                     </Button>
-                    {/* <Button onClick={() => ListagemMaterias(aluno)} variant="text">
-                      <ListagemMaterias />
-                    </Button>
-                    <Button onClick={() => CadastroMaterias(aluno)} variant="text">
-                      <CadastroMaterias />
-                    </Button> */}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -131,4 +113,4 @@ const AlunosListagem = () => {
   );
 };
 
-export default AlunosListagem;
+export default ListagemMaterias;

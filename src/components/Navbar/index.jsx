@@ -19,7 +19,7 @@ export default function Navbar(props) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ background: "#282685" }}>
         <Toolbar>
           <Link to="/">
             <IconButton
@@ -35,6 +35,13 @@ export default function Navbar(props) {
           <Link to="/cadastrar-alunos">
             <Button color="inherit">Cadastro de Aluno</Button>
           </Link>
+          <Link to="/cadastro">
+            <Button color="inherit">Cadastro de Matérias</Button>
+          </Link>
+          <Link to="/listagem">
+            <Button color="inherit">Listagem das Matérias</Button>
+          </Link>
+
           <SwitchWrapper>
             <MaterialUISwitch
               onClick={(e) => {

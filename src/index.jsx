@@ -5,11 +5,12 @@ import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import App from "./components/App";
 import DefaultPage from "./components/DefaultPage";
-import { TemaProvider, UsuarioProvider } from "./context";
+import { AlunoContext, AlunoProvider, TemaProvider, UsuarioProvider } from "./context";
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <AlunoProvider>
     <UsuarioProvider>
       <TemaProvider>
         {/* 
@@ -27,6 +28,7 @@ ReactDOM.render(
         </DefaultPage>
       </TemaProvider>
     </UsuarioProvider>
+    </AlunoProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

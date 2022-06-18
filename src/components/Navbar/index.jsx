@@ -38,7 +38,7 @@ export default function Navbar(props) {
           <Link to="/cadastro">
             <Button color="inherit">Cadastro de Matérias</Button>
           </Link>
-          <Link to="/listagem">
+          <Link to="/materias">
             <Button color="inherit">Listagem das Matérias</Button>
           </Link>
 

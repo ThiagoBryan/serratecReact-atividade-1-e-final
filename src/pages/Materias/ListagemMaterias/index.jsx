@@ -12,11 +12,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
-import { API_Lista } from "../../constants";
+import { API_Lista } from "../../../constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
-import animationData from "../../lotties/78259-loading.json";
+import animationData from "../../../lotties/78259-loading.json";
 
 const ListagemMaterias = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const ListagemMaterias = () => {
   };
 
   const editarMateria = (materia) => {
-    navigate(`/editar-materias/${materia.id}`);
+    navigate(`/editar-materias/${materia.id}`); // AQUI NÃO FUNCIONA
   };
 
   return (

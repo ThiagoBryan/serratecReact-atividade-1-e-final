@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
 export const TemaContext = createContext();
-export const TemaProvider = ({children}) => {
+export const TemaProvider = ({ children }) => {
   const [temaSelecionado, setTemaSelecionado] = useState(
     "claro" // informa o valor inicial do estado
   );
@@ -19,10 +19,8 @@ export const TemaProvider = ({children}) => {
 };
 
 export const UsuarioContext = createContext();
-export const UsuarioProvider = ({children}) => {
-  const [usuario, setUsuario] = useState(
-    localStorage.getItem('usuarioLogado')
-  );
+export const UsuarioProvider = ({ children }) => {
+  const [usuario, setUsuario] = useState(localStorage.getItem("usuarioLogado"));
 
   return (
     <UsuarioContext.Provider
@@ -33,5 +31,20 @@ export const UsuarioProvider = ({children}) => {
     >
       {children}
     </UsuarioContext.Provider>
+  );
+};
+export const AlunoContext = createContext();
+export const AlunoProvider = ({ children }) => {
+  const [alunoSelecionado, setAlunoSelecionado] = useState([]);
+
+  return (
+    <AlunoContext.Provider
+      value={{
+        alunoSelecionado,
+        setAlunoSelecionado,
+      }}
+    >
+      {children}
+    </AlunoContext.Provider>
   );
 };

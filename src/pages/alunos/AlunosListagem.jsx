@@ -17,8 +17,8 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 import animationData from "../../lotties/78259-loading.json";
-import ListagemMaterias from "../ListagemMaterias";
-import CadastroMaterias from "../CadastroMaterias";
+import ListagemMaterias from "../Materias/ListagemMaterias";
+import CadastroMaterias from "../Materias/CadastroMaterias";
 
 const AlunosListagem = () => {
   const navigate = useNavigate();
@@ -94,7 +94,6 @@ const AlunosListagem = () => {
                 <StyledTableCell>Idade</StyledTableCell>
                 <StyledTableCell>Cidade</StyledTableCell>
                 <StyledTableCell>Ações</StyledTableCell>
-                {/* <StyledTableCell>Matérias</StyledTableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -110,12 +109,6 @@ const AlunosListagem = () => {
                     <Button onClick={() => deletarAluno(aluno)} variant="text">
                       <DeleteIcon />
                     </Button>
-                    {/* <Button onClick={() => ListagemMaterias(aluno)} variant="text">
-                      <ListagemMaterias />
-                    </Button>
-                    <Button onClick={() => CadastroMaterias(aluno)} variant="text">
-                      <CadastroMaterias />
-                    </Button> */}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

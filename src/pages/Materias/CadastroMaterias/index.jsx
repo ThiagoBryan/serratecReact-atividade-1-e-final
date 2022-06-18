@@ -1,10 +1,10 @@
-import { API_Lista } from "../../constants";
+import { API_Lista } from "../../../constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useParams } from "react-router";
-import Styles from "../../components/Styles";
+import Styles from "../../../components/Styles";
 
     const CadastroMaterias = () => {
         const { id } = useParams();

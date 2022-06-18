@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { TemaContext } from "../context";
 import tema from "../tema";
 import Login from "../pages/Login";
-import CadastroMaterias from "../pages/CadastroMaterias"
-import ListagemMaterias from "../pages/ListagemMaterias"
+import CadastroMaterias from "../pages/Materias/CadastroMaterias"
+import ListagemMaterias from "../pages/Materias/ListagemMaterias"
 
 const Routes = () => {
   const routes = useRoutes([
@@ -17,7 +17,8 @@ const Routes = () => {
     { path: "/login", element: <Login /> },
     // { path: "/materias" },
     { path: "/cadastro", element: <CadastroMaterias />  },
-    { path: "/listagem", element: <ListagemMaterias /> }
+    { path: "/materias", element: <ListagemMaterias /> },
+    { path: "/editar-materias/:id", element: <CadastroMaterias /> }
   ]);
 
   return routes;

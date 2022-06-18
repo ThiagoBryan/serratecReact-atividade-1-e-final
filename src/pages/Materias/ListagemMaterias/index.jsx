@@ -65,7 +65,7 @@ const ListagemMaterias = () => {
   };
 
   const editarMateria = (materia) => {
-    navigate(`/editar-materias/${materia.id}`); // AQUI NÃO FUNCIONA
+    navigate(`/editar-materias/${materia.id}`); 
   };
 
   return (

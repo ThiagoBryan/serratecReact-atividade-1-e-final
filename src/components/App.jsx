@@ -8,6 +8,7 @@ import tema from "../tema";
 import Login from "../pages/Login";
 import CadastroMaterias from "../pages/Materias/CadastroMaterias"
 import ListagemMaterias from "../pages/Materias/ListagemMaterias"
+import { AlunoProvider } from "../context";
 
 const Routes = () => {
   const routes = useRoutes([
@@ -15,7 +16,6 @@ const Routes = () => {
     { path: "/cadastrar-alunos", element: <CadastrarAlunos /> },
     { path: "/editar-alunos/:id", element: <CadastrarAlunos /> },
     { path: "/login", element: <Login /> },
-    // { path: "/materias" },
     { path: "/cadastro", element: <CadastroMaterias />  },
     { path: "/materias", element: <ListagemMaterias /> },
     { path: "/editar-materias/:id", element: <CadastroMaterias /> }
@@ -28,9 +28,11 @@ const App = () => {
   const { temaSelecionado, setTemaSelecionado } = useContext(TemaContext);
   // tema.claro ou tema["claro"] fazem a mesma coisa
   return (
+    <AlunoProvider>
     <Container maxWidth="md" sx={tema[temaSelecionado]}>
       <Routes />
     </Container>
+    </AlunoProvider>
   );
 };
 

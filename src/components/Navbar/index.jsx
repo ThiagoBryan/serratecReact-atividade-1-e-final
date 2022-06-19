@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import { SwitchWrapper, MaterialUISwitch } from "./styles";
 import { AlunoContext, TemaContext, UsuarioContext } from "../../context";
 
+
 export default function Navbar(props) {
-const {alunoSelecionado, setAlunoSelecionado} = useContext(AlunoContext); // PAREI AQUI
 
   const { temaSelecionado, setTemaSelecionado } = useContext(TemaContext);
   const { usuario } = useContext(UsuarioContext);
@@ -20,6 +20,7 @@ const {alunoSelecionado, setAlunoSelecionado} = useContext(AlunoContext); // PAR
   };
 
   return (
+
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#282685" }}>
         <Toolbar>
@@ -37,11 +38,11 @@ const {alunoSelecionado, setAlunoSelecionado} = useContext(AlunoContext); // PAR
           <Link to="/cadastrar-alunos">
             <Button color="inherit">Cadastro de Aluno</Button>
           </Link>
-          <Link to="/cadastro">
-            <Button color="inherit">Cadastro de Matérias</Button>
-          </Link>
           <Link to="/materias">
             <Button color="inherit">Listagem das Matérias</Button>
+          </Link>
+          <Link to="/cadastro">
+            <Button color="inherit">Cadastro de Matérias</Button>
           </Link>
 
           <SwitchWrapper>

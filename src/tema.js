@@ -1,8 +1,11 @@
 export default {
   claro: {
     backgroundColor: "#fff",
+    
   },
   escuro: {
-    backgroundColor: "#000",
+    backgroundColor: "#c3c3c3",
+    
+    
   },
 };

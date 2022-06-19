@@ -17,6 +17,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import animationData from "../../../lotties/78259-loading.json";
+import "../../alunos/style.css";
 
 const ListagemMaterias = () => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const ListagemMaterias = () => {
 
   return (
     <Box sx={{ marginTop: "25px" }}>
+       <div className="scrollTabela"> 
       {materias.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -109,6 +111,7 @@ const ListagemMaterias = () => {
           <Lottie options={defaultOptions} height={500} width={500} />
         </>
       )}
+      </div>
     </Box>
   );
 };

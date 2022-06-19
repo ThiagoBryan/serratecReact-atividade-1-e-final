@@ -6,6 +6,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useParams } from "react-router";
 import Styles from "../../../components/Styles";
 
+
     const CadastroMaterias = () => {
         const { id } = useParams();
         const MySwal = withReactContent(Swal);

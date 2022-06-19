@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { StyledTableCell, StyledTableRow } from "./styles";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../constants";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -19,11 +19,13 @@ import Lottie from "react-lottie";
 import animationData from "../../lotties/78259-loading.json";
 import ListagemMaterias from "../Materias/ListagemMaterias";
 import CadastroMaterias from "../Materias/CadastroMaterias";
+import { AlunoContext } from "../../context";
+import "./style.css";
 
 const AlunosListagem = () => {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
-  const [alunos, setAlunos] = useState([]);
+  const {alunoSelecionado, setAlunoSelecionado} = useContext(AlunoContext);
 
   const defaultOptions = {
     loop: true,
@@ -40,9 +42,11 @@ const AlunosListagem = () => {
 
   const getAlunos = () => {
     axios.get(API_URL).then((response) => {
-      setAlunos(response.data);
+      setAlunoSelecionado(response.data);
     });
   };
+
+ 
 
   const deletarAluno = (aluno) => {
     axios
@@ -50,12 +54,12 @@ const AlunosListagem = () => {
       .then((response) => {
         MySwal.fire(<p>{response?.data?.message}</p>);
 
-        const alunoIndex = alunos.findIndex(
+        const alunoIndex = alunoSelecionado.findIndex(
           (elemento) => elemento.id === aluno.id
         );
-        let newAlunos = [...alunos];
+        let newAlunos = [...alunoSelecionado];
         newAlunos.splice(alunoIndex, 1);
-        setAlunos(newAlunos);
+        setAlunoSelecionado(newAlunos);
       })
       .catch((error) => {
         MySwal.fire({
@@ -85,7 +89,8 @@ const AlunosListagem = () => {
 
   return (
     <Box sx={{ marginTop: "25px" }}>
-      {alunos.length > 0 ? (
+      <div className="scrollTabela"> 
+      {alunoSelecionado.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -97,7 +102,7 @@ const AlunosListagem = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {alunos.map((aluno) => (
+              {alunoSelecionado.map((aluno) => (
                 <StyledTableRow>
                   <StyledTableCell>{aluno.nome}</StyledTableCell>
                   <StyledTableCell>{aluno.idade}</StyledTableCell>
@@ -120,6 +125,7 @@ const AlunosListagem = () => {
           <Lottie options={defaultOptions} height={500} width={500} />
         </>
       )}
+      </div>
     </Box>
   );
 };

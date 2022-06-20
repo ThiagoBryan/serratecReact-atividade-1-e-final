@@ -1,4 +1,4 @@
-import { API_Lista } from "../../../constants";
+import { API_Materia } from "../../../constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -21,7 +21,7 @@ import Styles from "../../../components/Styles";
         }, []);
       
         const getMaterias = () => {
-          axios.get(API_Lista).then((response) => {
+          axios.get(API_Materia).then((response) => {
             response.data.forEach(materia => {
               if (materia.id == id) {
                 setTitulo(materia.titulo);
@@ -33,7 +33,7 @@ import Styles from "../../../components/Styles";
       
         const cadastroMaterias = () => {
           if (id) {
-            axios.put(API_Lista, {
+            axios.put(API_Materia, {
               id,
               titulo,
               professor_nome
@@ -53,7 +53,7 @@ import Styles from "../../../components/Styles";
             });
           } else {
             axios
-              .post(API_Lista, { 
+              .post(API_Materia, { 
                 titulo,
                 professor_nome
               })

@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
-import { API_Lista } from "../../../constants";
+import { API_Materia } from "../../../constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Lottie from "react-lottie";
@@ -38,14 +38,14 @@ const ListagemMaterias = () => {
   }, []);
 
   const getMaterias = () => {
-    axios.get(API_Lista).then((response) => {
+    axios.get(API_Materia).then((response) => {
       setMaterias(response.data);
     });
   };
 
   const deletarMateria = (materia) => {
     axios
-      .delete(API_Lista, { data: materia })
+      .delete(API_Materia, { data: materia })
       .then((response) => {
         MySwal.fire(<p>{response?.data?.message}</p>);
 

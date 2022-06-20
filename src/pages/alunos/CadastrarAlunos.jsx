@@ -16,59 +16,46 @@ const CadastrarAlunos = () => {
   const [idade, setIdade] = useState(valorInicial);
   const [cidade, setCidade] = useState(valorInicial);
 
-  useEffect(()=> {
-    getAluno()
+  useEffect(() => {
+    getAluno();
   }, []);
 
-  // const getAlunos = () => {
-  //   axios.get(API_URL).then((response) => {
-  //     response.data.forEach(aluno => {
-  //       if (aluno.id == id) {
-  //         setNome(aluno.nome);
-  //         setIdade(aluno.idade);
-  //         setCidade(aluno.cidade);
-  //       }
-  //     })
-  //   });
-  // };
+  const { alunoSelecionado, setAlunoSelecionado } = useContext(AlunoContext);
 
-  const {alunoSelecionado, setAlunoSelecionado} = useContext(AlunoContext); 
-  
   const getAluno = () => {
-    alunoSelecionado.map(aluno => {
-      console.log(aluno)
-      if(aluno.id == id){
-        setNome(aluno.nome)
-        setIdade(aluno.idade)
-        setCidade(aluno.cidade)  
+    alunoSelecionado.map((aluno) => {
+      console.log(aluno);
+      if (aluno.id == id) {
+        setNome(aluno.nome);
+        setIdade(aluno.idade);
+        setCidade(aluno.cidade);
       }
-    }
-    )
+    });
   };
 
-
-  
   const cadastrarAlunos = () => {
     if (id) {
-      //axios.put(`${API_URL}/${id} `, {
-     axios.put(API_URL, {
-        id,
-        nome,
-        idade,
-        cidade
-      }).then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          MySwal.fire(<p>{response?.data?.message}</p>);
-          limparCampos();
-        }
-      }).catch(error => {
-        MySwal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: error,
+      axios
+        .put(API_URL, {
+          id,
+          nome,
+          idade,
+          cidade,
         })
-      });
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            MySwal.fire(<p>{response?.data?.message}</p>);
+            limparCampos();
+          }
+        })
+        .catch((error) => {
+          MySwal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error,
+          });
+        });
     } else {
       axios
         .post(API_URL, {
@@ -81,12 +68,13 @@ const CadastrarAlunos = () => {
             MySwal.fire(<p>{response?.data?.message}</p>);
             limparCampos();
           }
-        }).catch(error => {
+        })
+        .catch((error) => {
           MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
+            icon: "error",
+            title: "Oops...",
             text: error,
-          })
+          });
         });
     }
   };
@@ -119,7 +107,7 @@ const CadastrarAlunos = () => {
       />
 
       <Styles.ButtonCadastro onClick={cadastrarAlunos}>
-        {id ? 'Editar' : 'Cadastrar'}
+        {id ? "Editar" : "Cadastrar"}
       </Styles.ButtonCadastro>
     </Styles.Form>
   );

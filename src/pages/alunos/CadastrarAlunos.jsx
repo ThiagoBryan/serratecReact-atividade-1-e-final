@@ -47,10 +47,12 @@ const CadastrarAlunos = () => {
   };
 
 
-
+  
   const cadastrarAlunos = () => {
     if (id) {
-      axios.put(`${API_URL}/${id} `, {
+      //axios.put(`${API_URL}/${id} `, {
+     axios.put(API_URL, {
+        id,
         nome,
         idade,
         cidade

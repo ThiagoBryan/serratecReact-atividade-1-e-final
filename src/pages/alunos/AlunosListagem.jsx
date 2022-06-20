@@ -17,10 +17,8 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 import animationData from "../../lotties/78259-loading.json";
-import ListagemMaterias from "../Materias/ListagemMaterias";
-import CadastroMaterias from "../Materias/CadastroMaterias";
 import { AlunoContext } from "../../context";
-import "./style.css";
+
 
 const AlunosListagem = () => {
   const navigate = useNavigate();
@@ -69,7 +67,6 @@ const AlunosListagem = () => {
         });
       });
   };
-
   const editarAluno = (aluno) => {
     navigate(`/editar-alunos/${aluno.id}`);
   };
@@ -89,12 +86,12 @@ const AlunosListagem = () => {
 
   return (
     <Box sx={{ marginTop: "25px" }}>
-      <div className="scrollTabela"> 
       {alunoSelecionado.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
+                <StyledTableCell>Id</StyledTableCell>
                 <StyledTableCell>Nome</StyledTableCell>
                 <StyledTableCell>Idade</StyledTableCell>
                 <StyledTableCell>Cidade</StyledTableCell>
@@ -104,6 +101,7 @@ const AlunosListagem = () => {
             <TableBody>
               {alunoSelecionado.map((aluno) => (
                 <StyledTableRow>
+                  <StyledTableCell>{aluno.id}</StyledTableCell>
                   <StyledTableCell>{aluno.nome}</StyledTableCell>
                   <StyledTableCell>{aluno.idade}</StyledTableCell>
                   <StyledTableCell>{aluno.cidade}</StyledTableCell>
@@ -125,7 +123,6 @@ const AlunosListagem = () => {
           <Lottie options={defaultOptions} height={500} width={500} />
         </>
       )}
-      </div>
     </Box>
   );
 };

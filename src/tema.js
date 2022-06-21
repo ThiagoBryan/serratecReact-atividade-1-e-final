@@ -4,8 +4,8 @@ export default {
     
   },
   escuro: {
-    backgroundColor: "#c3c3c3",
-    
+    backgroundColor: "#000",
+    minHeight: '100vh',    
     
   },
 };
